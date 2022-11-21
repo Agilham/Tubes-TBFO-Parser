@@ -1,0 +1,6 @@
+S=>AB|CD|E
+A=>B|F
+B=>C|F
+C=ABc
+D=>Def
+F=>f
