@@ -3,8 +3,6 @@ dict = {}
 with open('tes.txt') as f:
     list = f.read().splitlines()
 
-print(list)
-
 maxRow = len(list)
 for i in range(maxRow):
     maxCol = len(list[i])
@@ -41,10 +39,16 @@ for i in range(maxRow):
                 if (val != ""):
                     dict[key][prod].append(val)
                 elif (val == ""):
-                    if (word == '|'):
+                    if (char == '|'):
                         dict[key].append([])
                         prod += 1
                     elif (word == ' '):
                         word = ""
 
-print(dict)
+print("Produksi")
+i = 1
+for key, value in dict.items():
+    print(f"Produksi ke-{i}:")
+    print(f"{key} : {value}")
+    i += 1
+

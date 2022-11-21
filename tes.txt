@@ -1,3 +1,3 @@
-S => AB A | C | D
-AB => WOW
-A => MANTAP S
+S => AB A | C | D | KUR a | t
+AB => WOW | 123ABC | */+-+ | 123 ABC
+A => MANTAP S | a | + | - | %
