@@ -3,23 +3,48 @@ dict = {}
 with open('tes.txt') as f:
     list = f.read().splitlines()
 
-for i in range(len(list)):
-    for j in range(len(list[i])):
-        if (j == 0):
-            key = list[i][j]
-            dict[key] = []
-        elif (j == 2):
-            dict[key].append([])
-            k = 0
-        elif (j > 2):
-            val = list[i][j]
-            newProd = False
-            if (val == '|'):
-                newProd = True
-            if (newProd):
+print(list)
+
+maxRow = len(list)
+for i in range(maxRow):
+    maxCol = len(list[i])
+    foundKey = False
+    foundStart = False
+    word = ""
+    for j in range(maxCol):
+        char = list[i][j]
+        if (not(foundKey)):
+            if (char == ' '):
+                foundKey = True
+                key = word
+                dict[key] = []
+                word = char
+            else:
+                word += char
+        elif (not(foundStart)):
+            word += char
+            if (word == " => "):
+                foundStart = True
                 dict[key].append([])
-                k += 1
-            elif (val != '|'):
-                dict[key][k].append(val)
+                prod = 0
+                word = ""
+        else:
+            foundVal = False
+            if (not(foundVal)):
+                if (char != ' ') & (char != '|'):
+                    word += char
+                if (char == ' ') | (char == '|') | (j == maxCol-1):
+                    foundVal = True
+                    val = word
+                    word = ""
+            if (foundVal):
+                if (val != ""):
+                    dict[key][prod].append(val)
+                elif (val == ""):
+                    if (word == '|'):
+                        dict[key].append([])
+                        prod += 1
+                    elif (word == ' '):
+                        word = ""
 
 print(dict)
