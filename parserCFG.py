@@ -16,7 +16,7 @@ def getCFG():
                 if (char == ' '):
                     foundKey = True
                     key = word
-                    produksi[key] = []
+                    produksi[key] = set()
                     word = char
                 else:
                     word += char
@@ -24,8 +24,7 @@ def getCFG():
                 word += char
                 if (word == " => "):
                     foundStart = True
-                    produksi[key].append([])
-                    count = 0
+                    RHS = []
                     word = ""
             else:
                 foundVal = False
@@ -38,13 +37,13 @@ def getCFG():
                         word = ""
                 if (foundVal):
                     if (val != ""):
-                        produksi[key][count].append(val)
+                        RHS.append(val)
                         if (len(val) > 1):
                             variabel.add(val)
                         else:
                             terminal.add(val)
                     else:
                         if (char == '|'):
-                            produksi[key].append([])
-                            count += 1
+                            produksi[key].add(tuple(RHS))
+                            RHS = []
     return produksi, variabel, terminal
