@@ -37,11 +37,19 @@ def getCFG():
                         word = ""
                 if (foundVal):
                     if (val != ""):
+                        if (val == "eps"):
+                            val = ""
+                        elif (val == "spc"):
+                            val = " "
                         RHS.append(val)
+                        print(RHS)
                         if (len(val) > 1):
                             variabel.add(val)
                         else:
                             terminal.add(val)
+                        if (j == maxCol-1):
+                            produksi[key].add(tuple(RHS))
+                            RHS = []
                     else:
                         if (char == '|'):
                             produksi[key].add(tuple(RHS))
