@@ -1,0 +1,5 @@
+SS => a AA a | b BB b | eps
+AA => CC | a
+BB => CC | b
+CC => CC DD EE | eps
+DD => AA | BB | a b

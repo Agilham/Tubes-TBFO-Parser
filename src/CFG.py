@@ -1,7 +1,7 @@
 class CFG:
-    produksii = dict()
-    variabeli = set()
-    terminali = set()
+    produksi = dict()
+    variabel = set()
+    terminal = set()
     
     def readCFG(self,filepath):
         newProduksi = dict()
@@ -47,10 +47,9 @@ class CFG:
                             elif (val == "spc"):
                                 val = " "
                             RHS.append(val)
-                            print(RHS)
                             if (len(val) > 1):
                                 newVariabel.add(val)
-                            else:
+                            elif (val != ""):
                                 newTerminal.add(val)
                             if (j == maxCol-1):
                                 newProduksi[key].add(tuple(RHS))
@@ -59,11 +58,26 @@ class CFG:
                             if (char == '|'):
                                 newProduksi[key].add(tuple(RHS))
                                 RHS = []
-            self.produksii = newProduksi
-            self.variabeli = newVariabel
-            self.terminali = newTerminal
+            self.produksi = newProduksi
+            self.variabel = newVariabel
+            self.terminal = newTerminal
 
     def print(self):
-        print(self.produksii)
-        print(self.variabeli)
-        print(self.terminali)
+        print("variabel :",self.variabel)
+        print("terminal :",self.terminal)
+        print("produksi :")
+        for LHS in self.produksi:
+            print(LHS+ " =>",end="")
+            i = 0
+            for RHS in self.produksi[LHS]:
+                for komponen in RHS:
+                    if (len(komponen) == 0):
+                        print(" eps",end="")
+                    elif (len(komponen) == 1 and komponen[0] == " "):
+                        print(" spc",end="")
+                    else:
+                        print(" " + komponen,end="")
+                if (i != len(self.produksi[LHS])-1):
+                    print(" |",end="")
+                i += 1
+            print()

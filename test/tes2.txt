@@ -1,0 +1,3 @@
+SS => AA SS BB | eps
+AA => a AA SS | a AA | a
+BB => SS b SS | b SS | SS b | b | AA | b b

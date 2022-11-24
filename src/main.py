@@ -1,6 +1,8 @@
-from parserCFG import getCFG
-production, variable, terminal = getCFG()
+from CFG import *
+from CFGtoCNF import *
 
-print(production)
-print(variable)
-print(terminal)
+newCFG = CFG()
+newCFG.readCFG('test/tes5.txt')
+newCFG.print()
+CFGtoCNF(newCFG)
+newCFG.print()
