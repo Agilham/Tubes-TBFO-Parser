@@ -1,0 +1,4 @@
+SS => AA BB | BB CC
+AA => BB AA | a
+BB => CC CC | b
+CC => AA BB | a
