@@ -4,6 +4,10 @@ Program untuk melakukan syntax checking javascript dengan menggunakan CYK parsin
 ```
 python src/main.py [filename]
 ```
+# Requirements
+```
+tqdm
+```
 # Contributor
 * Ahmad Ghulam Ilham (13521118)
 * Muhammad Dhiwaul Akbar (13521158)
