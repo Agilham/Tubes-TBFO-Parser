@@ -207,11 +207,11 @@ def CFGtoCNF(CFG : CFG):
                         producer = getSoleProducer(subset,CFG.produksi)
                         if producer is None :
                             CFG.produksi[newVar] = [subset]
-                            RHS.append(newVar)
+                            RHS.insert(i,newVar)
                             CFG.variabel.add(newVar)
                             newVar = nextAvailable(newVar,CFG.variabel)
                         else:
-                            RHS.append(producer)
+                            RHS.insert(i,producer)
     for LHS in CFG.produksi:
         for i in range(len(CFG.produksi[LHS])):
             CFG.produksi[LHS][i] = tuple(CFG.produksi[LHS][i])
