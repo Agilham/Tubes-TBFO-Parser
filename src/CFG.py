@@ -46,6 +46,8 @@ class CFG:
                                 val = ""
                             elif (val == "spc"):
                                 val = " "
+                            elif (val == "nl"):
+                                val = "\n"
                             RHS.append(val)
                             if (len(val) > 1):
                                 newVariabel.add(val)
@@ -75,6 +77,8 @@ class CFG:
                         print(" eps",end="")
                     elif (len(komponen) == 1 and komponen[0] == " "):
                         print(" spc",end="")
+                    elif (len(komponen) == 1 and komponen[0] == "\n"):
+                        print(" nl",end="")
                     else:
                         print(" " + komponen,end="")
                 if (i != len(self.produksi[LHS])-1):

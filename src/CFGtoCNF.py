@@ -14,7 +14,7 @@ def nextAvailable(var,variabel):
     return var
 
 
-def getSoleProductor(product, production):
+def getSoleProducer(product, production):
     # mencari LHS di production yang menghasilkan product saja
     for LHS in production:
         if (len(production[LHS]) != 1):
@@ -185,14 +185,14 @@ def CFGtoCNF(CFG : CFG):
             if (len(RHS) > 1):
                 for i in range(len(RHS)):
                     if (RHS[i] in CFG.terminal):
-                        productor = getSoleProductor([RHS[i]],CFG.produksi)
-                        if productor is None:
+                        producer = getSoleProducer([RHS[i]],CFG.produksi)
+                        if producer is None:
                             CFG.produksi[newVar] = [[RHS[i]]]
                             RHS[i] = newVar
                             CFG.variabel.add(newVar)
                             newVar = nextAvailable(newVar,CFG.variabel)
                         else:
-                            RHS[i] = productor
+                            RHS[i] = producer
     isCNFValid = False
     while (not isCNFValid):
         isCNFValid = True
@@ -204,14 +204,14 @@ def CFGtoCNF(CFG : CFG):
                     for i in range(lengthRHS-2,-1,-2):
                         subset = RHS[i:i+2]
                         del RHS[i:i+2]
-                        productor = getSoleProductor(subset,CFG.produksi)
-                        if productor is None :
+                        producer = getSoleProducer(subset,CFG.produksi)
+                        if producer is None :
                             CFG.produksi[newVar] = [subset]
                             RHS.append(newVar)
                             CFG.variabel.add(newVar)
                             newVar = nextAvailable(newVar,CFG.variabel)
                         else:
-                            RHS.append(productor)
+                            RHS.append(producer)
     for LHS in CFG.produksi:
         for i in range(len(CFG.produksi[LHS])):
             CFG.produksi[LHS][i] = tuple(CFG.produksi[LHS][i])
